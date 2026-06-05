@@ -13,6 +13,11 @@ public class AuthController {
         return "hello world";
     }
 
+    @GetMapping("/role_user")
+    public String roleUser() {
+        return "ROLE_USER";
+    }
+
     @GetMapping("/role_admin")
     public String roleAdmin() {
         return "ROLE_ADMIN";
