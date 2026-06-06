@@ -7,7 +7,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create   # istəsən: none / validate / create / create-drop
+      ddl-auto: update   # istəsən: none / validate / create / create-drop
 
 server:
   port: 8080

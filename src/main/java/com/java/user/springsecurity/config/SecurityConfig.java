@@ -2,9 +2,12 @@ package com.java.user.springsecurity.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -20,13 +23,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean
-    InMemoryUserDetailsManager inMemoryUserDetailsManager() {
-        String generatedPassword = "{noop}123";
-        return new InMemoryUserDetailsManager(User.withUsername("user")
-                .password(generatedPassword)
-                .roles("USER").build()); //bu role_user 37-ci line görə access verir.
-    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -44,9 +40,10 @@ public class SecurityConfig {
         return http.build();
     }
 
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder(); // Şifrələrin təhlükəsiz saxlanması üçün
-//    }
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(); // Şifrələrin təhlükəsiz saxlanması üçün
+    }
+
 }
 
