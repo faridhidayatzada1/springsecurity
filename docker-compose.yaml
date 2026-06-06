@@ -2,20 +2,21 @@ version: '3.8'
 services:
   postgres:
     image: postgres:15
-    container_name: my_postgres
+    container_name: security_postgres # hostName
     restart: always
     environment:
-      POSTGRES_DB: mydb
+      POSTGRES_DB: mydb # Maintenance Database:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
     ports:
-      - "5435:5432"
+      - "5435:5432" # 5432 (Docker daxili şəbəkəsində konteynerlər bir-biri ilə daxili port üzərindən danışır.
+        # 5435 sizin lokal kompüter üçün olan xarici portdur.
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
   pgadmin:
     image: dpage/pgadmin4
-    container_name: spring-security
+    container_name: security-pgadmin
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
