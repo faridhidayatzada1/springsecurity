@@ -33,18 +33,19 @@ public class SecurityConfig {
                         .requestMatchers("/auth/public").permitAll() // Hamıya açıq səhifələr, auth silsək 403 verəcək.
                         .requestMatchers("/auth/role_user/**").hasRole("USER") // Yalnız adminlər üçün
                         .requestMatchers("/auth/role_admin/**").hasRole("ADMIN") // Buna permission olmayacaq, çünki inMemory-də admin yoxdur.
+                        .requestMatchers("/jwt/**").permitAll()
                         .anyRequest().authenticated() // Qalan bütün səhifələr üçün giriş mütləqdir
                 )
-                .formLogin(Customizer.withDefaults())
+             //   .formLogin(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable());
 
         return http.build();
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // Şifrələrin təhlükəsiz saxlanması üçün
-    }
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder(); // Şifrələrin təhlükəsiz saxlanması üçün
+//    }
 
 }
 

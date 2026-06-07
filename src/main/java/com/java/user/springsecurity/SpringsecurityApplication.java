@@ -17,7 +17,7 @@ import java.util.Optional;
 public class SpringsecurityApplication implements CommandLineRunner {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    //private final PasswordEncoder passwordEncoder;
 
 
     public static void main(String[] args) {
@@ -34,7 +34,7 @@ public class SpringsecurityApplication implements CommandLineRunner {
         UserEntity admin = UserEntity
                 .builder()
                 .username("admin")
-                .password(passwordEncoder.encode("admin"))
+            //    .password(passwordEncoder.encode("admin"))
                 .authorities(List.of(userAuthority))
                 .isAccountNonExpired(true)
                 .isAccountNonLocked(true)
@@ -55,7 +55,7 @@ public class SpringsecurityApplication implements CommandLineRunner {
         UserEntity admin1 = UserEntity
                 .builder()
                 .username("user")
-                .password(passwordEncoder.encode("user"))
+            //   .password(passwordEncoder.encode("user"))
                 .authorities(List.of(userAuthority1))
                 .isAccountNonExpired(true)
                 .isAccountNonLocked(true)
