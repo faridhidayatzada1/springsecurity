@@ -48,6 +48,28 @@ public class SpringsecurityApplication implements CommandLineRunner {
         if(userEntityOptional.isEmpty()) {
             userRepository.save(admin);
         }
+        UserAuthority userAuthority1 = UserAuthority.builder()
+                .authority("ROLE_ADMIN")
+                .build();
+
+        UserEntity admin1 = UserEntity
+                .builder()
+                .username("user")
+                .password(passwordEncoder.encode("user"))
+                .authorities(List.of(userAuthority1))
+                .isAccountNonExpired(true)
+                .isAccountNonLocked(true)
+                .isCredentialsNonExpired(true)
+                .isEnabled(true)
+                .build();
+
+        userAuthority.setUser(admin1);
+
+
+        Optional<UserEntity> userEntityOptional1 = userRepository.findByUsername(admin1.getUsername());
+        if(userEntityOptional1.isEmpty()) {
+            userRepository.save(admin1);
+        }
 
 
     }
