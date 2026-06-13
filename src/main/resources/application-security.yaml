@@ -1,3 +1,9 @@
+application:
+  client:
+    akb:
+      credentials:
+        iss: '2222'
+        aud: 'gw-accr-test.e-cbar.az'
 security-jwt:
   jwtProperties:
     secret: a-string-secret-at-least-256-bits-long

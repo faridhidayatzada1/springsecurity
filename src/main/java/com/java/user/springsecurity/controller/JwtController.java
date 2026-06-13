@@ -4,10 +4,7 @@ import com.java.user.springsecurity.model.TokenRequest;
 import com.java.user.springsecurity.service.JwtService;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/jwt")
@@ -19,5 +16,10 @@ public class JwtController {
     @PostMapping("/token-parse")
     public String getParseJwtToken(@RequestBody TokenRequest token) {
         return jwtService.parseToken(token.getToken());
+    }
+
+    @GetMapping("/issue-token")
+    public String getIssueJwtToken(){
+        return jwtService.issueToken();
     }
 }
