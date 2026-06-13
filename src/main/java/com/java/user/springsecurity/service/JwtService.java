@@ -72,7 +72,6 @@ public class JwtService {
                 .issuedAt(Date.from(Instant.ofEpochSecond(iat)))
                 .expiration(Date.from(Instant.ofEpochSecond(exp)))
                 .signWith(key, Jwts.SIG.HS256)
-                .claims(Map.of("authorities", authentication.getAuthorities()))
                 .compact();
 
 
